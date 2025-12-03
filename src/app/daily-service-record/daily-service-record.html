@@ -1,0 +1,90 @@
+    <div style="text-align:center; margin-top:20px;">
+    <h1>{{ title() }}</h1><br>
+
+
+    <!-- Add Patient Area-->
+    <input type="date" [value]="Date()"
+    (input)="Date.set($any($event.target).value)" placeholder="Date"><br>
+
+
+    <input type="text" [value]="patientName()"
+    (input)="patientName.set($any($event.target).value)" placeholder="Patient Name"><br>
+
+
+    <input type="number" [value]="age()"
+    (input)="age.set($any($event.target).value)" placeholder="Age"><br>
+
+
+
+
+    <input type="text" [value]="gender()"
+    (input)="gender.set($any($event.target).value)" placeholder="Gender"><br>
+
+
+
+
+    <input type="text" [value]="sicknessDiagnosed()"
+    (input)="sicknessDiagnosed.set($any($event.target).value)" placeholder="Sickness Diagnosis"><br>
+
+
+
+
+    <input type="text" [value]="treatmentProvided()"
+    (input)="treatmentProvided.set($any($event.target).value)" placeholder="Treatment"><br>
+
+
+    <input type="text" [value]="attendingPhysician()"
+    (input)="attendingPhysician.set($any($event.target).value)" placeholder="Physician"><br><br>
+
+
+    <button (click)="addPatient()">Register User</button><br>
+    <hr>
+
+
+    <!-- List PATIENTS Area-->
+       <h1>Service Record Data</h1>
+    <div *ngFor="let daily_service_record of daily_service_records">
+
+  <input type="date"
+         [value]="(daily_service_record.Date ? (daily_service_record.Date.toDate ? daily_service_record.Date.toDate() : daily_service_record.Date) : '') | date:'yyyy-MM-dd'"
+         (input)="daily_service_record.Date = $any($event.target).value">
+
+  <input
+         [value]="daily_service_record.Name"
+         (input)="daily_service_record.Name = $any($event.target).value">
+
+  <input type="number"
+         [value]="daily_service_record.age"
+         (input)="daily_service_record.age = $any($event.target).valueAsNumber">
+
+  <input
+         [value]="daily_service_record.gender"
+         (input)="daily_service_record.gender = $any($event.target).value">
+
+  <input
+         [value]="daily_service_record.sickness"
+         (input)="daily_service_record.sickness = $any($event.target).value">
+
+  <input
+         [value]="daily_service_record.treatment"
+         (input)="daily_service_record.treatment = $any($event.target).value">
+
+  <input
+         [value]="daily_service_record.physician"
+         (input)="daily_service_record.physician = $any($event.target).value"><br>
+
+  <button (click)="updatePatient(
+      daily_service_record.id,
+      daily_service_record.Date,
+      daily_service_record.Name,
+      daily_service_record.age,
+      daily_service_record.gender,
+      daily_service_record.sickness,
+      daily_service_record.treatment,
+      daily_service_record.physician
+  )">Update</button>
+
+  <button (click)="deletePatient(daily_service_record.id)">Delete</button>
+
+</div>
+</div>

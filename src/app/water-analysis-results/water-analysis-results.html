@@ -1,0 +1,56 @@
+    <div style="text-align:center; margin-top:20px;">
+    <h1>{{ title() }}</h1><br>
+
+
+    <!-- Add Patient Area-->
+    <input type="date" [value]="Date()"
+    (input)="Date.set($any($event.target).value)" placeholder="Date"><br>
+
+
+    <input type="text" [value]="sourceAddress()"
+    (input)="sourceAddress.set($any($event.target).value)" placeholder="Source Adress"><br>
+
+
+    <input type="text" [value]="waterStatus()"
+    (input)="waterStatus.set($any($event.target).value)" placeholder="Water Status"><br>
+
+
+    <input type="text" [value]="remarks()"
+    (input)="remarks.set($any($event.target).value)" placeholder="Remarks"><br>
+
+    <button (click)="addPatient()">Register Source</button><br>
+    <hr>
+
+
+    <!-- List PATIENTS Area-->
+     <h1>WATER ANALYSIS DATA</h1>
+    <div *ngFor="let water_analysis_result of water_analysis_results">
+
+  <input type="date"
+         [value]="(water_analysis_result.Date ? (water_analysis_result.Date.toDate ? water_analysis_result.Date.toDate() : water_analysis_result.Date) : '') | date:'yyyy-MM-dd'"
+         (input)="water_analysis_result.Date = $any($event.target).value">
+
+  <input
+         [value]="water_analysis_result.Name"
+         (input)="water_analysis_result.Name = $any($event.target).value">
+
+  <input
+         [value]="water_analysis_result.status"
+         (input)="water_analysis_result.status = $any($event.target).value">
+
+  <input
+         [value]="water_analysis_result.remarks"
+         (input)="water_analysis_result.remarks = $any($event.target).value"><br>
+
+  <button (click)="updatePatient(
+      water_analysis_result.id,
+      water_analysis_result.Date,
+      water_analysis_result.Name,
+      water_analysis_result.status,
+      water_analysis_result.remarks
+  )">Update</button>
+
+  <button (click)="deletePatient(water_analysis_result.id)">Delete</button>
+
+</div>
+</div>
