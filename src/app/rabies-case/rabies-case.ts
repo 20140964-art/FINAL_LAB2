@@ -17,7 +17,7 @@ templateUrl: './rabies-case.html',
 styleUrls: ['./rabies-case.css']
 })
 export class RabiesCase {
-title = signal('Daily Service Record');
+title = signal('Rabies Case');
 Date = signal<Date | null>(null)
 patientName = signal('');
 age = signal<number | null>(null);
